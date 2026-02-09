@@ -9,13 +9,14 @@ public class SpawnBullet : MonoBehaviour
     public AudioClip spawnSound; 
     public AudioSource audioSource;
 
+    public GameObject spawnPoint;
+
     // Update is called once per frame
     void Update()
     {
         if(Mouse.current.leftButton.wasPressedThisFrame)
         {
-            Vector2 spawnPos = Barrel.transform.position;
-            Instantiate(Bullet, spawnPos, Quaternion.identity);
+            Instantiate(Bullet, spawnPoint.transform.position, spawnPoint.transform.rotation);
             audioSource.PlayOneShot(spawnSound);
         }
     }
