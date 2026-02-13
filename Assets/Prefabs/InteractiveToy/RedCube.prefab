@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2612969391158730583}
   - component: {fileID: 7683022625718653590}
+  - component: {fileID: 1249735788923456597}
   m_Layer: 0
   m_Name: RedCube
   m_TagString: Untagged
@@ -87,3 +88,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1249735788923456597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4565713941276935740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f5d76541b9f63441b9d697877c0e4bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallSpeed: 2
+  destroyY: -3.5

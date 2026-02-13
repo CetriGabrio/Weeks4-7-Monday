@@ -2,15 +2,20 @@ using UnityEngine;
 
 public class FallingCubes : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] float fallSpeed = 2f;
+    [SerializeField] float destroyY = -3.5f;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        // Move downward
+        transform.Translate(Vector2.down * fallSpeed * Time.deltaTime);
+
+        // Delete when below screen
+        if (transform.position.y < destroyY)
+            Destroy(gameObject);
     }
 }
