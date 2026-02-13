@@ -1,9 +1,11 @@
 using UnityEngine;
 
+//This script handles the movement of the cubes
 public class FallingCubes : MonoBehaviour
 {
-    [SerializeField] float fallSpeed = 2f;
-    [SerializeField] float destroyY = -3.5f;
+    //Variables for the cubes
+    [SerializeField] float fallSpeed = 2f; //Movement speed
+    [SerializeField] float destroyY = -3.5f; //Destroy position on the Y
     void Start()
     {
         
@@ -11,10 +13,10 @@ public class FallingCubes : MonoBehaviour
 
     void Update()
     {
-        // Move downward
+        //Move downward based on the set speed
         transform.Translate(Vector2.down * fallSpeed * Time.deltaTime);
 
-        // Delete when below screen
+        //Delete the cubes when it reaches the destroy position
         if (transform.position.y < destroyY)
             Destroy(gameObject);
     }
