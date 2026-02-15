@@ -569,6 +569,7 @@ MonoBehaviour:
   minX: -5
   maxX: 5
   cooldown: 3
+  currentBlock: {fileID: 0}
 --- !u!1 &246830292
 GameObject:
   m_ObjectHideFlags: 0
@@ -1870,6 +1871,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17d98b709dba8f040b430a89967d3997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawner: {fileID: 212675676}
+  handRenderer: {fileID: 305112578}
   rotationSlider: {fileID: 46165387}
   slapButton: {fileID: 775822349}
   maxTilt: 45

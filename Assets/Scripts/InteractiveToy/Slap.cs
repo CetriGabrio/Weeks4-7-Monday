@@ -5,11 +5,17 @@ using UnityEngine.UI;
 //This script handles the slap mechanic for the hand
 public class Slap : MonoBehaviour
 {
-    //calling the rotation slider and slap button from the canvas
+    //Calling the spawner and the hand sprite renderer
+    [SerializeField] private CubesSpawner spawner;
+    //I had to make this line since my player GameObject is a child of another object
+    //With this line, I can make sure the collisions are respected, while also keeping the parents relationship working
+    [SerializeField] private SpriteRenderer handRenderer;
+
+    //Calling the rotation slider and slap button from the canvas
     [SerializeField] private Slider rotationSlider;
     [SerializeField] private Button slapButton;
 
-    //the variables for the slap
+    //The variables for the slap
     [SerializeField] private float maxTilt = 45f;
     [SerializeField] private float slapSpeed = 600f;
     float targetAngle;
@@ -46,6 +52,7 @@ public class Slap : MonoBehaviour
                 //After the action has been performed, return
                 if (slappingToCenter)
                 {
+                    CheckCollisions();
                     slappingToCenter = false;
                     returning = true;
                     targetAngle = SliderToAngle(rotationSlider.value);
@@ -78,5 +85,24 @@ public class Slap : MonoBehaviour
     {
         return maxTilt * (2f * s - 1f);
     }
+
+    //This is the important bit that handles the collisions between the hand and the cubes
+    //I made it in the slap script so that the collisions are only detected when the player is performing the slap
+    void CheckCollisions()
+    {
+        if (spawner.currentBlock == null) return;
+
+        //Since I can't use colliders, the collision system is using sprites
+        //Basically detecting if what has been collided has the current block sprite renderer
+        SpriteRenderer blockSR = spawner.currentBlock.GetComponent<SpriteRenderer>();
+
+        //IF it is, perform the action
+        if (blockSR != null && handRenderer.bounds.Intersects(blockSR.bounds))
+        {
+            Debug.Log("Hit Block!");
+        }
+    }
+
+
 }
 
