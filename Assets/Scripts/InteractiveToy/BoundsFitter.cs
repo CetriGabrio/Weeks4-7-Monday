@@ -18,6 +18,8 @@ using UnityEngine;
 //However, I wasn't exactly sure on how to solve my issue in other ways. So I identified the problem and came up with a solution.
 //In case this is considered out of scope, disabling this script won't affect the overall functionality of the game.
 
+//P.S. This only works when in game
+
 public class BoundsFitter : MonoBehaviour
 {
     //The variables for the camera and the 2 bounds
@@ -71,7 +73,7 @@ public class BoundsFitter : MonoBehaviour
         float rightX = camX + halfW; //the right "blue"
 
         //Vertical height of the visible camera
-        float height = (halfH * 2f) - (verticalMargin * 2f);
+        float height = halfH * 2f;
 
         //Position the bounds at the at edges and center them vertically
         redBound.position = new Vector3(leftX + boundWorldWidth * 0.5f, camY, 0f); //the left "red" boundary
