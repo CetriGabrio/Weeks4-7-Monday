@@ -96,13 +96,39 @@ public class Slap : MonoBehaviour
         //Basically detecting if what has been collided has the current block sprite renderer
         SpriteRenderer blockSR = spawner.currentBlock.GetComponent<SpriteRenderer>();
 
-        //IF it is, perform the action
+        //If it is, perform the action
         if (blockSR != null && handRenderer.bounds.Intersects(blockSR.bounds))
         {
             Debug.Log("Hit Block!");
+
+            FallingCubes cube = spawner.currentBlock.GetComponent<FallingCubes>();
+
+            //Here I am really detecting the collisions between the player hand and the cubes.
+            //The one issue I encountered, that I had not planned, was to detect the direction in which the cube flies after being hit
+            //My idea was, if I hit the cube with the right side of the hand, it flies to the right, and vice versa
+            //However, after trying for a while, I couldn't get this to work as a I wanted.
+            //I did some research and found the .bounds in the Unity Documentation
+            //https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Renderer-bounds.html
+            //It basically finds the boundaries of the rectangle that surrounds a sprite renderer. 
+            //From what I understood, it has a similar behavior to the Mesh Renderer.
+            //.center instead is the center point of the sprites.
+            //https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Bounds-center.html
+            //I am aware we haven't really covered these particular functions in class
+            //However, since its native of the sprite renderer (which we covered in class), i had the idea to try it
+            if (cube != null)
+            {
+                //So, how it works, is that to determine which side was hit, I am comparing the center positions of the sprites.
+                float handX = handRenderer.bounds.center.x;
+                float blockX = blockSR.bounds.center.x;
+
+                //By comparing the X center of the cube and the X center of the hand
+                //I can determine whether the cube is left or right of the player
+                float dir = (blockX > handX) ? 1f : -1f;
+
+                //And then move it in the intended direction
+                cube.velocity = new Vector2(dir * 6f, 0f); 
+            }
         }
     }
-
-
 }
 

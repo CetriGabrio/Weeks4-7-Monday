@@ -565,11 +565,11 @@ MonoBehaviour:
   redCube: {fileID: 4565713941276935740, guid: ffd55da5feb444f488d88af70fd78957, type: 3}
   blueCube: {fileID: 4497744426151205201, guid: 5c6b0cb99af349d458be0f2e0f9e701c, type: 3}
   bomb: {fileID: 4747260389766400749, guid: b39bcbe2d29a5c844a7050e12df24e7a, type: 3}
+  currentBlock: {fileID: 0}
   spawnY: 4.9
   minX: -5
   maxX: 5
   cooldown: 3
-  currentBlock: {fileID: 0}
 --- !u!1 &246830292
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,8 +699,8 @@ Transform:
   m_GameObject: {fileID: 305112577}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.25, z: 0}
-  m_LocalScale: {x: 1, y: 2.8562, z: 1}
+  m_LocalPosition: {x: 0, y: 1.7986, z: 0}
+  m_LocalScale: {x: 1, y: 4.7564297, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1042286509}
