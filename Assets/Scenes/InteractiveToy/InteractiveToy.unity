@@ -717,7 +717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1df621142e54cc346974482b59cd9e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSlider: {fileID: 1132896474}
+  movementSlider: {fileID: 1132896474}
   xMin: -5
   xMax: 5
 --- !u!1 &379151501
