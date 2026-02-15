@@ -88,6 +88,26 @@ public class Slap : MonoBehaviour
 
     //This is the important bit that handles the collisions between the hand and the cubes
     //I made it in the slap script so that the collisions are only detected when the player is performing the slap
+
+    //Here I am really detecting the collisions between the player hand and the cubes.
+    //The one issue I encountered, that I had not planned, was to detect the direction in which the cube flies after being hit
+    //My idea was, if I hit the cube with the right side of the hand, it flies to the right, and vice versa
+    //However, after trying for a while, I couldn't get this to work as a I wanted.
+    //I did some research and found the .bounds in the Unity Documentation
+    //https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Renderer-bounds.html
+    //It basically finds the boundaries of the rectangle that surrounds a sprite renderer. 
+    //From what I understood, it has a similar behavior to the Mesh Renderer.
+    //.center instead is the center point of the sprites.
+    //https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Bounds-center.html
+
+    //On the same notice, .intersects also allows to check whether two bounds have interacted with each other.
+    //https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Bounds.Intersects.html
+    //Once again, I did my research to understand the concept, and realized it's a "subtopic" of .bounds
+    //This was essential to check the collisions between the hand and the cubes, as well as the cubes and the barriers for the scoring system
+
+    //I am aware we haven't really covered these particular functions in class
+    //However, since its native of the sprite renderer (which we covered in class), I had the idea to try it
+    //It works as intended.
     void CheckCollisions()
     {
         if (spawner.currentBlock == null) return;
@@ -103,18 +123,6 @@ public class Slap : MonoBehaviour
 
             FallingCubes cube = spawner.currentBlock.GetComponent<FallingCubes>();
 
-            //Here I am really detecting the collisions between the player hand and the cubes.
-            //The one issue I encountered, that I had not planned, was to detect the direction in which the cube flies after being hit
-            //My idea was, if I hit the cube with the right side of the hand, it flies to the right, and vice versa
-            //However, after trying for a while, I couldn't get this to work as a I wanted.
-            //I did some research and found the .bounds in the Unity Documentation
-            //https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Renderer-bounds.html
-            //It basically finds the boundaries of the rectangle that surrounds a sprite renderer. 
-            //From what I understood, it has a similar behavior to the Mesh Renderer.
-            //.center instead is the center point of the sprites.
-            //https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Bounds-center.html
-            //I am aware we haven't really covered these particular functions in class
-            //However, since its native of the sprite renderer (which we covered in class), i had the idea to try it
             if (cube != null)
             {
                 //So, how it works, is that to determine which side was hit, I am comparing the center positions of the sprites.

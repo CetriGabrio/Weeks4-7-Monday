@@ -10,6 +10,10 @@ public class FallingCubes : MonoBehaviour
     //This variable is for the velocity at which the cube flies after being hit
     public Vector2 velocity;
 
+    //To avoid using tags, I am giving each block a name using this string variable
+    //It is used for the scoring system
+    public string blockType;
+
     void Start()
     {
         
