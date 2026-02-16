@@ -83,7 +83,7 @@ public class Slap : MonoBehaviour
     //Bringing the slider back to the original value of .5 to have no rotation on the player
     float SliderToAngle(float s)
     {
-        return maxTilt * (2f * s - 1f);
+        return -maxTilt * (2f * s - 1f);
     }
 
     //This is the important bit that handles the collisions between the hand and the cubes
@@ -119,7 +119,7 @@ public class Slap : MonoBehaviour
         //If it is, perform the action
         if (blockSR != null && handRenderer.bounds.Intersects(blockSR.bounds))
         {
-            Debug.Log("Hit Block!");
+            //Debug.Log("Hit Block!");
 
             FallingCubes cube = spawner.currentBlock.GetComponent<FallingCubes>();
 
