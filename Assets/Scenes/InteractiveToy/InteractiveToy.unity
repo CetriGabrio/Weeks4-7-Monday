@@ -826,8 +826,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99826153056baf44cba90a33ad2640bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialPopupPrefab: {fileID: 4725441141781260146, guid: 79146d0a29961204095b34b76a0ce51e, type: 3}
-  canvasParent: {fileID: 1367732909}
+  tutorialPrefab: {fileID: 4725441141781260146, guid: 79146d0a29961204095b34b76a0ce51e, type: 3}
+  canvas: {fileID: 1367732909}
 --- !u!4 &396995569
 Transform:
   m_ObjectHideFlags: 0
@@ -928,7 +928,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 396995568}
         m_TargetAssemblyTypeName: Tutorial, Assembly-CSharp
-        m_MethodName: ToggleTutorial
+        m_MethodName: SpawnTutorial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
