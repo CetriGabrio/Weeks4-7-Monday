@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
 //This script handles the slap mechanic for the hand
 public class Slap : MonoBehaviour
 {
     //Calling the spawner and the hand sprite renderer
     [SerializeField] private CubesSpawner spawner;
+
     //I had to make this line since my player GameObject is a child of another object
     //With this line, I can make sure the collisions are respected, while also keeping the parents relationship working
     [SerializeField] private SpriteRenderer handRenderer;
@@ -21,7 +21,7 @@ public class Slap : MonoBehaviour
     float targetAngle;
     float currentAngle;
 
-    //These bools are to make so the slap brings the hand back to the original rotation of 0
+    //These bool are to make so the slap brings the hand back to the original rotation of 0
     bool slappingToCenter;
     bool returning;
 
@@ -45,6 +45,17 @@ public class Slap : MonoBehaviour
         else
         {
             //However, if it is slapping, than rotate toward the target angle, which is the center
+            //A note I want to make here is that I discovered how much stuff can be done with the Mathf
+            //We have used this function in class multiple times for rotation. However, I needed something more precise so I did some research
+            //I found both Mathf.MoveTowards and Mathf.Approximately, which we haven't mentioned inc lass, but are subtopics of Mathf.
+            //https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Mathf.MoveTowards.html
+            //MoveTowrrds is similar to Lerp, with the difference that value being changed never goes over the target
+            //In my case the target is the 0 rotation, And i did not want the hand to go over it
+            //https://docs.unity3d.com/6000.3/Documentation/ScriptReference/Mathf.Approximately.html
+            //Approximately, as the name hints at, check if two values are "within a small value of each other"
+            //In my case, I wanted to check if the current hand angle was close enough to the target angle, and then perform all the collisions
+            //We haven't covered these functions in particular but the assignment guidelines say we are allowed to use Mathf.
+            //Therefore, I figure I could use them after learning about them.
             currentAngle = Mathf.MoveTowards(currentAngle, targetAngle, slapSpeed * Time.deltaTime);
 
             if (Mathf.Approximately(currentAngle, targetAngle))
@@ -106,8 +117,7 @@ public class Slap : MonoBehaviour
     //This was essential to check the collisions between the hand and the cubes, as well as the cubes and the barriers for the scoring system
 
     //I am aware we haven't really covered these particular functions in class
-    //However, since its native of the sprite renderer (which we covered in class), I had the idea to try it
-    //It works as intended.
+    //However, since its native of the sprite renderer (which we covered in class), I had the idea to try it after doing attentive research on it
     void CheckCollisions()
     {
         if (spawner.currentBlock == null) return;
@@ -119,7 +129,7 @@ public class Slap : MonoBehaviour
         //If it is, perform the action
         if (blockSR != null && handRenderer.bounds.Intersects(blockSR.bounds))
         {
-            //Debug.Log("Hit Block!");
+            //Debug.Log("Hit Block!"); this was used for testing
 
             FallingCubes cube = spawner.currentBlock.GetComponent<FallingCubes>();
 
