@@ -18,7 +18,7 @@ public class Tutorial : MonoBehaviour
         //If the tutorial box is not on the screen, then spawn it on button click
         if (tutorialBox == null)
         {
-            tutorialBox = Instantiate(tutorialPopupPrefab, canvasParent);
+            tutorialBox = Instantiate(tutorialPrefab, canvas);
             Time.timeScale = 0f; //Pause the gameplay in the background
         }
         //If the tutorial box is already on the screen then destroy it on the next button click
