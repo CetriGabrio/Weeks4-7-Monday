@@ -14,7 +14,7 @@ public class Score : MonoBehaviour
     //Calling the text in the canvas
     [SerializeField] private TMP_Text scoreText;
 
-    //Score is o f integer type as I only what whole numbers
+    //Score is of integer type as I only what whole numbers
     int score;
 
     void Update()
@@ -31,6 +31,7 @@ public class Score : MonoBehaviour
         //Collision system once again
         //We are obviously calling and using the sprite renderer for the cubes
         //As i explained in the slap script, I am using .intersects to check if the cubes have came in contact with the barriers
+        //Explanation on how this works in the slap script
         SpriteRenderer blockSR = spawner.currentBlock.GetComponent<SpriteRenderer>();
         FallingCubes cube = spawner.currentBlock.GetComponent<FallingCubes>();
 

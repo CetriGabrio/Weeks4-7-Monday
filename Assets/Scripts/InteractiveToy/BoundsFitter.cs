@@ -1,34 +1,32 @@
 using UnityEngine;
 
-//This script handles the bounds at the edge of the screen so they scale with the screen size. 
+//This script handles the barriers at the edge of the screen so they scale with the screen size. 
 
 //I initially made them UI elements to use the Anchor setup, which worked perfectly.
-//However, for the scope of this project, I needed the bounds to be GameObjects.
+//However, for the scope of this project, I needed the barriers to be GameObjects.
 //I was not sure how to recreate the Anchor behavior using code, so I did some research.
 //Firstly, I used the official Unity manual and went into the "cameras" section to see if I could find any input.
 //https://docs.unity3d.com/Manual/class-Camera.html 
 //Overall, what I found that could help is the "cam.orthographicSize".
-//This line makes the camera "render objects uniformly, with no sense of perspective." Sounded like what I needed.
+//This function makes the camera "render objects uniformly, with no sense of perspective." Sounded like what I needed.
 //To understand more I did some further research and found this discussion post giving more context regarding the orthographic camera.
 //https://discussions.unity.com/t/orthographic-always-better-for-2d/394912
-//From what I understood, it eliminates perspective distortion, so it basically allows to display the objects no matter the screen or the resolution (exactly what I needed)
+//From what I understood, it eliminates perspective distortion, so it basically allows to display the objects no matter the screen size or the resolution (exactly what I needed)
 //Apparently it's commonly used for side scrolling games and parallax perspective, but I gave it a try anyway due to its definition.
 //I therefore used this concept and it worked just like the Anchor in the UI components.
 //We haven't yet covered much about camera works during the semester so I understand this is out of scope.
 //However, I wasn't exactly sure on how to solve my issue in other ways. So I identified the problem and came up with a solution.
 //In case this is considered out of scope, disabling this script won't affect the overall functionality of the game.
 
-//P.S. This only works when in game
-
 public class BoundsFitter : MonoBehaviour
 {
-    //The variables for the camera and the 2 bounds
+    //The variables for the camera and the 2 barriers
     [SerializeField] private Camera cam;
-    [SerializeField] private Transform redBound;
-    [SerializeField] private Transform blueBound;
+    [SerializeField] private Transform redBarrier;
+    [SerializeField] private Transform blueBarrier;
 
-    //The variables for how wide the bounds should be
-    [SerializeField] private float boundWorldWidth = 1f;   //Serialize so I can tune them in engine
+    //The variables for how wide the barriers should be
+    [SerializeField] private float barrierWorldWidth = 1f;   //Serialize so I can tune them in engine
 
     //Variable for the last Width and Height of the bounds detected
     int lastW, lastH;
@@ -69,18 +67,18 @@ public class BoundsFitter : MonoBehaviour
         float halfW = halfH * cam.aspect;
 
         //Calculate the left and right edges of the visible screen in the world space
-        float leftX = camX - halfW;  //the left "red" boundary
-        float rightX = camX + halfW; //the right "blue"
+        float leftX = camX - halfW;  //the left "red" barrier
+        float rightX = camX + halfW; //the right "blue" barrier
 
         //Vertical height of the visible camera
         float height = halfH * 2f;
 
-        //Position the bounds at the at edges and center them vertically
-        redBound.position = new Vector3(leftX + boundWorldWidth * 0.5f, camY, 0f); //the left "red" boundary
-        blueBound.position = new Vector3(rightX - boundWorldWidth * 0.5f, camY, 0f); //the right "blue"
+        //Position the barriers at the at edges and center them vertically
+        redBarrier.position = new Vector3(leftX + barrierWorldWidth * 0.5f, camY, 0f); //the left "red" barrier
+        blueBarrier.position = new Vector3(rightX - barrierWorldWidth * 0.5f, camY, 0f); //the right "blue" barrier
 
-        //Scale the bounds to match the camera height
-        redBound.localScale = new Vector3(boundWorldWidth, height, 1f); //the left "red" boundary
-        blueBound.localScale = new Vector3(boundWorldWidth, height, 1f); //the right "blue"
+        //Scale the barriers to match the camera height
+        redBarrier.localScale = new Vector3(barrierWorldWidth, height, 1f); //the left "red" barrier
+        blueBarrier.localScale = new Vector3(barrierWorldWidth, height, 1f); //the right "blue" barrier
     }
 }

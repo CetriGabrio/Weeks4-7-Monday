@@ -27,7 +27,7 @@ public class FallingCubes : MonoBehaviour
         //Move in whatever direction at the velocity after being hit
         transform.Translate(velocity * Time.deltaTime);
 
-        //Delete the cubes when it reaches the destroy position
+        //Delete the cubes when they reach the destroy position
         if (transform.position.y < destroyY)
             Destroy(gameObject);
     }

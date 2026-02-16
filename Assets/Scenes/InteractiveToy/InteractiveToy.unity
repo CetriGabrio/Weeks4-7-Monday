@@ -600,9 +600,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 379151503}
-  redBound: {fileID: 192911492}
-  blueBound: {fileID: 754946145}
-  boundWorldWidth: 1
+  redBarrier: {fileID: 192911492}
+  blueBarrier: {fileID: 754946145}
+  barrierWorldWidth: 1
 --- !u!4 &246830294
 Transform:
   m_ObjectHideFlags: 0

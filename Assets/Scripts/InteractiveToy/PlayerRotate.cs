@@ -2,18 +2,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //This script handles the player rotation using the rotation slider
+//P.S. I have added this script to a GameObject and made the player its child to make the center of rotation, like we practiced in class
 public class PlayerRotate : MonoBehaviour
 {
     //calling the rotation slider that is in the canvas
     [SerializeField] private Slider rotationSlider;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         //To handle the rotation I am using the math working I included in my planning

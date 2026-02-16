@@ -4,18 +4,12 @@ using UnityEngine.UI;
 //This script handles the player movement using the movement slider
 public class PlayerMove : MonoBehaviour
 {
-    //calling the movement slider that is in the canvas
+    //Calling the movement slider that is in the canvas
     [SerializeField] private Slider movementSlider;
 
-    //the boundaries for the player movement that i can tune in engine
+    //The boundaries for the player movement that I can tune in engine
     [SerializeField] private float xMin = -8f;
     [SerializeField] private float xMax = 8f;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
