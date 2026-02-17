@@ -10,6 +10,10 @@ public class SpikesSensor : MonoBehaviour
 
     public UnityEvent<float> OnExitRandomNumber;
 
+    public UnityEvent<float> OnSpikesDamage;
+    public float spikeDamage = 1f;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,8 +32,9 @@ public class SpikesSensor : MonoBehaviour
             else
             {
                 isInHazard = true;
-                Debug.Log("Spikes");
+                //Debug.Log("Spikes");
                 OnSpikesDetection.Invoke();
+                OnSpikesDamage.Invoke(spikeDamage);
             }
         }
         else
@@ -37,9 +42,9 @@ public class SpikesSensor : MonoBehaviour
             if(isInHazard == true)
             {
                 isInHazard = false;
-                Debug.Log("No Spikes");
+                //Debug.Log("No Spikes");
                 OnSpikesUndetection.Invoke();
-                OnExitRandomNumber.Invoke(Random.Range(0, 10));
+                //OnExitRandomNumber.Invoke(Random.Range(0, 10));
             }
             else
             {
