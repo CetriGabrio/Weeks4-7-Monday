@@ -1,9 +1,14 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SpikesSensor : MonoBehaviour
 {
     public SpriteRenderer hazard;
     public bool isInHazard = false;
+    public UnityEvent OnSpikesDetection;
+    public UnityEvent OnSpikesUndetection;
+
+    public UnityEvent<float> OnExitRandomNumber;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,6 +29,7 @@ public class SpikesSensor : MonoBehaviour
             {
                 isInHazard = true;
                 Debug.Log("Spikes");
+                OnSpikesDetection.Invoke();
             }
         }
         else
@@ -32,11 +38,18 @@ public class SpikesSensor : MonoBehaviour
             {
                 isInHazard = false;
                 Debug.Log("No Spikes");
+                OnSpikesUndetection.Invoke();
+                OnExitRandomNumber.Invoke(Random.Range(0, 10));
             }
             else
             {
 
             }
         }
+    }
+
+    public void ShowNumberInConsole(float number)
+    {
+        Debug.Log(number);
     }
 }
